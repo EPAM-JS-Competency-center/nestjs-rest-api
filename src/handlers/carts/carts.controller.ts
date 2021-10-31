@@ -7,6 +7,11 @@ import { UpdateCartDto } from './dto/update-cart.dto';
 export class CartsController {
   constructor(private readonly cartsService: CartsService) {}
 
+  @Get('/average')
+  average() {
+    return this.cartsService.average();
+  }
+
   @Post()
   create(@Body() createCartDto: CreateCartDto) {
     return this.cartsService.create(createCartDto);
