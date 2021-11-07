@@ -1,3 +1,9 @@
-import { CreateCartDto } from './create-cart.dto';
+import { IsString } from 'class-validator';
 
-export class UpdateCartDto extends CreateCartDto {}
+export class UpdateCartDto {
+  @IsString()
+  balance: string;
+
+  @IsString()
+  currency: string;
+}
