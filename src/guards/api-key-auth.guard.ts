@@ -2,11 +2,11 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
-  NotFoundException,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { Reflector } from '@nestjs/core';
+import { UnauthorizedException } from '../exceptions/UnauthorizedException';
+import { NotFoundException } from '../exceptions/NotFoundException';
 
 @Injectable()
 export class ApiKeyAuthGuard implements CanActivate {
