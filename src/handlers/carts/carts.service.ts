@@ -2,19 +2,25 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
 import { UtilsService } from '../../services/utils/utils.service';
+import { ConfigModule } from '../../services/config/config.module';
+import { ConfigService } from '../../services/config/config.service';
 
 @Injectable()
 export class CartsService {
   constructor(
     private readonly utilsService: UtilsService,
+    private readonly configService: ConfigService,
 
     @Inject('DateService')
     private readonly DateService,
-  ) {}
+  ) {
+    console.log(`Current env: ${configService.getAppConfig().env}`);
+  }
 
   average() {
     return this.utilsService.average([1,2,3]);
   }
+
   create(createCartDto: CreateCartDto) {
     return 'This action adds a new cart';
   }
