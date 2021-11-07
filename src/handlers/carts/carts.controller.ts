@@ -4,6 +4,7 @@ import { CreateCartDtoValid } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
 import { TransformPipe } from './pipes/transform.pipe';
 import { ValidationPipe } from './pipes/validation.pipe';
+import { SkipAuth } from '../../guards/skip-auth.decorator';
 
 @Controller('carts')
 export class CartsController {
@@ -22,6 +23,7 @@ export class CartsController {
     return typeof id;
   }
 
+  @SkipAuth()
   @Post()
   create(@Body(TransformPipe, ValidationPipe) createCartDto: CreateCartDtoValid) {
     return createCartDto;
