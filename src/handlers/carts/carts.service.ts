@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
 import { UtilsService } from '../../services/utils/utils.service';
-import { ConfigModule } from '../../services/config/config.module';
 import { ConfigService } from '../../services/config/config.service';
 
 @Injectable()
@@ -14,7 +13,7 @@ export class CartsService {
     @Inject('DateService')
     private readonly DateService,
   ) {
-    console.log(`Current env: ${configService.getAppConfig().env}`);
+    console.log(`Current env: ${configService.appConfig.env}`);
   }
 
   average() {
