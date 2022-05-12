@@ -24,7 +24,10 @@ exports.handler = async (event) => {
 
         console.log('Notification is successfully sent.', data);
 
-        resolve('success'); // or return the message to the DLQ with reject()
+        resolve('success');
+        // or return the message to the DLQ with
+        // reject();
+        // in this case message will be returned back to the queue and lambda trigger called - so you will trap in infinite loop...
       });
     });
   }))
