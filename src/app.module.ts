@@ -11,7 +11,7 @@ import { ApiKeyAuthGuard } from './guards/api-key-auth.guard';
     {
       provide: APP_GUARD,
       useClass: ApiKeyAuthGuard,
-    }
+    },
   ],
 })
 export class AppModule {}

@@ -6,6 +6,6 @@ import { UtilsModule } from '../../services/utils/utils.module';
 @Module({
   imports: [UtilsModule],
   controllers: [CartsController],
-  providers: [CartsService]
+  providers: [CartsService],
 })
 export class CartsModule {}
