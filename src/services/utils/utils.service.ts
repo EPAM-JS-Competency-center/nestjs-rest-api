@@ -1,7 +1,9 @@
-import { Inject, Injectable, Scope } from '@nestjs/common';
+import { Inject, Injectable, Logger, Scope } from '@nestjs/common';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class UtilsService {
+  private logger = new Logger(UtilsService.name);
+
   constructor(
     @Inject('Constants')
     private readonly constants,
@@ -9,8 +11,8 @@ export class UtilsService {
     @Inject('DateService')
     private readonly dateService,
   ) {
-    console.log('Utility service was created');
-    console.log(dateService.getTimeFromStart());
+    this.logger.log('Utility service was created');
+    this.logger.log(dateService.getTimeFromStart());
   }
   average(array: number[]): number {
     const average = array.reduce((acc, item) => acc + item, 0) / array.length;
