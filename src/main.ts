@@ -3,10 +3,15 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { CustomExceptionFilter } from './exception-filters/custom.exception-filter';
 
+const appPort = process.env.PORT || 3000;
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new CustomExceptionFilter());
-  await app.listen(process.env.PORT || 3000);
+
+  await app
+    .listen(appPort)
+    .then(() => console.log(`App is up and running on PORT: ${ appPort }`));
 }
 bootstrap();
