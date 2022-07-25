@@ -15,6 +15,7 @@ export class CartsController {
     return this.cartsService.average();
   }
 
+  @SkipAuth()
   @Get(':id')
   findOne(
     @Param('id', ParseIntPipe)
@@ -36,6 +37,7 @@ export class CartsController {
     return this.cartsService.update(+id, updateCartDto);
   }
 
+  @SkipAuth()
   @Get()
   findAll() {
     return this.cartsService.findAll();
