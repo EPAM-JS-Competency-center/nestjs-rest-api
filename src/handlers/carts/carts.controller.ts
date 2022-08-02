@@ -6,7 +6,7 @@ import { TransformPipe } from './pipes/transform.pipe';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { SkipAuth } from '../../guards/skip-auth.decorator';
 
-@Controller('carts')
+@Controller('api/carts')
 export class CartsController {
   constructor(private readonly cartsService: CartsService) {}
 
@@ -19,7 +19,7 @@ export class CartsController {
   @Get(':id')
   findOne(
     @Param('id', ParseIntPipe)
-    id: number
+    id: number,
   ) {
     return typeof id;
   }
