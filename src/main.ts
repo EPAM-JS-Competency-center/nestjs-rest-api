@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+
+import { AppModule } from './app.module';
 import { CustomExceptionFilter } from './exception-filters/custom.exception-filter';
 
 const appPort = process.env.PORT || 3000;
