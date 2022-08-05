@@ -62,7 +62,7 @@ ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" "mkdir -p /tmp/${APP_DIR}"
 npm run build
 
 # install pm2 if necessary:
-#ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" "npm i pm2 --location=global"
+ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" "npm i pm2 --location=global"
 # For Ubuntu server with NVM:
 #ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" ". ~/.nvm/nvm.sh; npm i pm2 --location=global"
 
@@ -78,10 +78,10 @@ ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" "echo 'installing npm packages' && 
 
 
 # via ssh move files from tmp folder to /var/www so that it will not be accidentally removed. Clean up folder beforehand.
-ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" "pm2 stop all || echo 'nothing to stop.' && echo 'moving files' && sudo rm -rf /var/www/${APP_DIR} && sudo unzip -o /tmp/${APP_DIR}/${APP_ZIP_FILE_NAME} -d /var/www/${APP_DIR}/ && sudo mv -f /tmp/${APP_DIR}/node_modules /var/www/${APP_DIR}/node_modules && sudo mv -f /tmp/${APP_DIR}/package.json /var/www/${APP_DIR}/package.json && cd /var/www/${APP_DIR}"
+ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" "pm2 stop all || echo 'nothing to stop.' && echo 'moving files' && sudo rm -rf /var/www/${APP_DIR} && sudo mkdir -p /var/www/${APP_DIR} && sudo unzip -o /tmp/${APP_DIR}/${APP_ZIP_FILE_NAME} -d /var/www/${APP_DIR} && sudo mv -f /tmp/${APP_DIR}/node_modules /var/www/${APP_DIR}/node_modules && sudo mv -f /tmp/${APP_DIR}/package.json /var/www/${APP_DIR}/package.json && cd /var/www/${APP_DIR}"
 
 # For Ubuntu server with NVM:
-#ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" ". ~/.nvm/nvm.sh; sudo apt-get install unzip && pm2 stop all || echo 'nothing to stop.' && echo 'moving files' && sudo rm -rf /var/www/${APP_DIR} && sudo unzip -o /tmp/${APP_DIR}/${APP_ZIP_FILE_NAME} -d /var/www/${APP_DIR}/ && sudo mv -f /tmp/${APP_DIR}/node_modules /var/www/${APP_DIR}/node_modules && sudo mv -f /tmp/${APP_DIR}/package.json /var/www/${APP_DIR}/package.json && cd /var/www/${APP_DIR}"
+#ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" ". ~/.nvm/nvm.sh; sudo apt-get install unzip && pm2 stop all || echo 'nothing to stop.' && echo 'moving files' && sudo rm -rf /var/www/${APP_DIR}&& sudo mkdir -p /var/www/${APP_DIR} && sudo unzip -o /tmp/${APP_DIR}/${APP_ZIP_FILE_NAME} -d /var/www/${APP_DIR}/ && sudo mv -f /tmp/${APP_DIR}/node_modules /var/www/${APP_DIR}/node_modules && sudo mv -f /tmp/${APP_DIR}/package.json /var/www/${APP_DIR}/package.json && cd /var/www/${APP_DIR}"
 
 # run app with pm2:
 ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" "pm2 delete all || echo 'nothing to delete' && export PORT=${PORT}; export NODE_ENV=${NODE_ENV}; pm2 start /var/www/${APP_DIR}/main.js -f"
