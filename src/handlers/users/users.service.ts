@@ -83,9 +83,3 @@ export class UsersService {
     };
   }
 }
-
-// lastKey: {
-//   createdAt: 1662032319473,
-//     userId: '15f488fb-e362-44be-a7cc-c3b314785fb3',
-//     relationKey: 'UserDetails'
-// },

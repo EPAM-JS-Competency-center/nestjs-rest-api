@@ -15,9 +15,10 @@ export const UserSchema = new Schema(
         rangeKey: 'createdAt',
       },
     },
+    /** User Details */
     name: String,
     email: String,
-    /** `Cart` */
+    /** Cart */
     currency: String,
     balance: Number,
   },
