@@ -1,9 +1,8 @@
-import { IsString } from 'class-validator';
+import { IsNumber } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateCartDto {
-  @IsString()
-  balance: string;
-
-  @IsString()
-  currency: string;
+  @ApiProperty()
+  @IsNumber()
+  balance: number;
 }

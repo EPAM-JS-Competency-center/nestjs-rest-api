@@ -1,10 +1,15 @@
+import { Currency } from '../constants';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateCartDto {
-  balance: string;
-  currency: string;
-}
-
-export class CreateCartDtoValid {
+  @ApiProperty()
   balance: number;
-  currency: string;
+
+  @ApiProperty({
+    enum: Currency,
+  })
+  currency: Currency;
+
+  @ApiProperty()
+  userId: string;
 }
