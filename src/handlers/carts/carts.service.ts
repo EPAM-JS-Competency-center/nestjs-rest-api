@@ -9,11 +9,11 @@ import {
 } from '../users/utils/user-primary-key.utils';
 import { UsersService } from '../users/users.service';
 import { BadRequestException } from '../../exceptions/BadRequestException';
-import { DATABASE_EXCEPTIONS } from '../../modules/database/constants';
 import { User, UserModel } from '../users/users.model';
 import { USER_SCHEMA_KEYS } from '../users/users.schema';
 import { getIsUserParsedPrimaryKeyValid } from '../users/utils/is-user-parsed-primary-key-valid.util';
 import { ListingResponse } from '../../shared/utils/listing-response.util';
+import { getIsConditionalCheckFailedException } from '../../modules/database/utils/database-exception-types.utils';
 
 @Injectable()
 export class CartsService {
@@ -29,11 +29,8 @@ export class CartsService {
 
     try {
       createdItem = await this.cartsRepositoryService.create(createCartDto);
-    } catch (e) {
-      if (
-        e.__type &&
-        e.__type.includes(DATABASE_EXCEPTIONS.CONDITIONAL_CHECK_FAILED)
-      ) {
+    } catch (error) {
+      if (getIsConditionalCheckFailedException(error)) {
         throw new BadRequestException('Such element already exist');
       }
     }

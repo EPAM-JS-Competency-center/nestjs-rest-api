@@ -1,3 +1,3 @@
-export const DATABASE_EXCEPTIONS = {
-  CONDITIONAL_CHECK_FAILED: 'ConditionalCheckFailedException',
-};
+export enum DatabaseExceptions {
+  CONDITIONAL_CHECK_FAILED = 'ConditionalCheckFailedException',
+}
