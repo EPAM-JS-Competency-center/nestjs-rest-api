@@ -10,7 +10,6 @@ import {
 import { CartsService } from './carts.service';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
-import { ValidationPipe } from './pipes/validation.pipe';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiAuth } from '../../api-docs/api-docs.decorators';
 
@@ -21,7 +20,7 @@ export class CartsController {
 
   @ApiAuth()
   @Post()
-  create(@Body(ValidationPipe) createCartDto: CreateCartDto) {
+  create(@Body() createCartDto: CreateCartDto) {
     return this.cartsService.create(createCartDto);
   }
 
