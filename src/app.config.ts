@@ -103,7 +103,6 @@ new AppConfig()
     localDatabaseEndpoint: ENV.LOCAL_DATABASE_ENDPOINT || false,
     tableAutoCreate: ENV.TABLE_AUTOCREATE === 'true',
     tableAutoUpdate: ENV.TABLE_AUTOUPDATE === 'true',
-  })
-  .setMetaData({ ...ENV });
+  });
 
 export default AppConfig;
