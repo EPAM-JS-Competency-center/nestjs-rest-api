@@ -9,7 +9,7 @@ import {
   getUserPrimaryKey,
   parseUserPrimaryKey,
 } from './utils/user-primary-key.utils';
-import { USER_SCHEMA_KEYS } from './users.schema';
+import { USER_SCHEMA_KEYS, USER_TITLE } from './users.schema';
 import { BadRequestException } from '../../exceptions/BadRequestException';
 import { getIsUserParsedPrimaryKeyValid } from './utils/is-user-parsed-primary-key-valid.util';
 import { ListingResponse } from '../../shared/utils/listing-response.util';
@@ -17,7 +17,7 @@ import { ListingResponse } from '../../shared/utils/listing-response.util';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel('User')
+    @InjectModel(USER_TITLE)
     private userModel: Model<User, Partial<UserKey>>,
   ) {}
 

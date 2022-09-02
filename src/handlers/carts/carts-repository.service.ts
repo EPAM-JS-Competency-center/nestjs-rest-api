@@ -5,11 +5,12 @@ import { CreateCartDto } from './dto/create-cart.dto';
 import { USER_RELATIONS } from '../users/users.relations';
 import { parseUserPrimaryKey } from '../users/utils/user-primary-key.utils';
 import { UpdateCartDto } from './dto/update-cart.dto';
+import { USER_TITLE } from '../users/users.schema';
 
 @Injectable()
 export class CartsRepositoryService {
   constructor(
-    @InjectModel('User')
+    @InjectModel(USER_TITLE)
     private userModel: Model<User, UserKey>,
   ) {}
 
