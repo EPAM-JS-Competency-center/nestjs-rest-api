@@ -1,4 +1,2 @@
-export class TypesHelper {
-  static isString = (input: any) => typeof input === 'string';
-  static isNumber = (input: any) => typeof input === 'number';
-}
+export const isString = (input: any) => typeof input === 'string';
+export const isNumber = (input: any) => typeof input === 'number';

@@ -1,8 +1,13 @@
 import { UserKey } from '../users.model';
-import { TypesHelper } from '../../../shared/types/types.helper';
+import { isString } from '../../../shared/types/types.helper';
 
-export const getIsUserParsedPrimaryKeyValid = (key: UserKey) =>
+type GetIsUserParsedPrimaryKeyValid = (key: UserKey) => boolean;
+
+export const getIsUserParsedPrimaryKeyValid: GetIsUserParsedPrimaryKeyValid = ({
+  userId,
+  relationKey,
+}) =>
   [
-    TypesHelper.isString(key.userId) && key.userId.length,
-    TypesHelper.isString(key.relationKey) && key.relationKey.length,
+    isString(userId) && userId.length,
+    isString(relationKey) && relationKey.length,
   ].every(Boolean);
