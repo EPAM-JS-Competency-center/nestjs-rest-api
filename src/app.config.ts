@@ -95,7 +95,7 @@ class AppConfig {
 
 new AppConfig()
   .setServiceName(ENV.APP_NAME)
-  .setServiceVersion(ENV.npm_package_version)
+  .setServiceVersion(ENV.APP_VERSION)
   .setDatabaseOptions({
     accessKey: ENV.PUBLIC_ACCESS_KEY,
     secretKey: ENV.PRIVATE_ACCESS_KEY,
