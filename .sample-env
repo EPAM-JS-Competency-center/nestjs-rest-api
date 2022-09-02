@@ -1,4 +1,4 @@
-REGION="YourRegion"
+REGION="local"
 PUBLIC_ACCESS_KEY="YourPublicKey"
 PRIVATE_ACCESS_KEY="YourPrivateKey"
 LOCAL_DATABASE_ENDPOINT=""

@@ -1,3 +1,5 @@
+import { ENV } from '../../shared/env/env.contants';
+
 export interface DatabaseConfigModel {
   accessKey: string;
   secretKey: string;
@@ -18,13 +20,13 @@ export class DatabaseConfig {
     }
 
     this.config = {
-      accessKey: process.env.PUBLIC_ACCESS_KEY,
-      secretKey: process.env.PRIVATE_ACCESS_KEY,
-      region: process.env.REGION,
-      localDatabaseEndpoint: process.env.LOCAL_DATABASE_ENDPOINT || false,
-      tableAutoCreate: process.env.TABLE_AUTOCREATE === 'true',
-      tableAutoUpdate: process.env.TABLE_AUTOUPDATE === 'true',
-      appName: process.env.APP_NAME,
+      accessKey: ENV.PUBLIC_ACCESS_KEY,
+      secretKey: ENV.PRIVATE_ACCESS_KEY,
+      region: ENV.REGION,
+      localDatabaseEndpoint: ENV.LOCAL_DATABASE_ENDPOINT || false,
+      tableAutoCreate: ENV.TABLE_AUTOCREATE === 'true',
+      tableAutoUpdate: ENV.TABLE_AUTOUPDATE === 'true',
+      appName: ENV.APP_NAME,
     };
 
     DatabaseConfig.instance = this;
