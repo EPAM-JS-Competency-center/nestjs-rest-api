@@ -4,15 +4,15 @@ import { User, UserKey, UserModel } from './users.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as uuid from 'uuid';
 import { USER_RELATIONS } from './users.relations';
-import { NotFoundException } from '../../exceptions/NotFoundException';
 import {
   getUserPrimaryKey,
   parseUserPrimaryKey,
 } from './utils/user-primary-key.utils';
 import { USER_SCHEMA_KEYS, USER_TITLE } from './users.schema';
-import { BadRequestException } from '../../exceptions/BadRequestException';
 import { getIsUserParsedPrimaryKeyValid } from './utils/is-user-parsed-primary-key-valid.util';
 import { ListingResponse } from '../../shared/utils/listing-response.util';
+import { USERS_EXCEPTION_STRATEGIES_KEYS } from './users-exception.strategies';
+import { BASE_EXCEPTION_STRATEGIES_KEYS } from '../../shared/http/base-exception.strategies';
 
 @Injectable()
 export class UsersService {
@@ -25,13 +25,13 @@ export class UsersService {
     const key = parseUserPrimaryKey(id);
 
     if (!getIsUserParsedPrimaryKeyValid(key)) {
-      throw new BadRequestException('Provided id is not correct');
+      throw new Error(BASE_EXCEPTION_STRATEGIES_KEYS.PROVIDED_ID_INVALID);
     }
 
     const item = await this.userModel.get(key);
 
     if (!item) {
-      throw new NotFoundException('This user is not found');
+      throw new Error(USERS_EXCEPTION_STRATEGIES_KEYS.USER_NOT_FOUND);
     }
 
     return new UserModel(item).getJSON(USER_SCHEMA_KEYS);
