@@ -1,19 +1,23 @@
-import { DatabaseConfigModel } from '../database.config';
+import { Config } from '../../../app.config';
 import { DynamooseModuleOptions } from 'nestjs-dynamoose';
 
 export const adaptDynamooseOptions = (
-  databaseConfig: DatabaseConfigModel,
-): DynamooseModuleOptions => ({
-  aws: {
-    accessKeyId: databaseConfig.accessKey,
-    secretAccessKey: databaseConfig.secretKey,
-    region: databaseConfig.region,
-  },
-  local: databaseConfig.localDatabaseEndpoint,
-  table: {
-    create: databaseConfig.tableAutoCreate,
-    prefix: `${databaseConfig.appName || 'Service'}-`,
-    suffix: '-Table',
-    update: databaseConfig.tableAutoUpdate,
-  },
-});
+  config: Config,
+): DynamooseModuleOptions => {
+  const { databaseOptions, serviceName } = config;
+
+  return {
+    aws: {
+      accessKeyId: databaseOptions.accessKey,
+      secretAccessKey: databaseOptions.secretKey,
+      region: databaseOptions.region,
+    },
+    local: databaseOptions.localDatabaseEndpoint,
+    table: {
+      create: databaseOptions.tableAutoCreate,
+      prefix: `${serviceName || 'Service'}-`,
+      suffix: '-Table',
+      update: databaseOptions.tableAutoUpdate,
+    },
+  };
+};

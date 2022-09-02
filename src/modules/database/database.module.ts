@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
-import { DatabaseConfig } from './database.config';
+import AppConfig from '../../app.config';
 import { adaptDynamooseOptions } from './adapters/dynamoose-options.adapter';
 import { DynamooseModule } from 'nestjs-dynamoose';
 
-const databaseConfig = new DatabaseConfig();
+const databaseConfig = new AppConfig().build();
 
 @Module({
-  imports: [
-    DynamooseModule.forRoot(adaptDynamooseOptions(databaseConfig.getConfig())),
-  ],
+  imports: [DynamooseModule.forRoot(adaptDynamooseOptions(databaseConfig))],
 })
 export class DatabaseModule {}
