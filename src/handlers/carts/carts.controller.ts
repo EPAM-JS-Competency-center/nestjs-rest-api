@@ -11,48 +11,33 @@ import { CartsService } from './carts.service';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
 import { ValidationPipe } from './pipes/validation.pipe';
-import { ApiHeader, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
+import { ApiAuth } from '../../api-docs/api-docs.decorators';
 
 @ApiTags('Carts')
 @Controller('carts')
 export class CartsController {
   constructor(private readonly cartsService: CartsService) {}
 
-  @ApiHeader({
-    name: 'x-api-key',
-    description: 'Provide auth key',
-    required: true,
-  })
+  @ApiAuth()
   @Post()
   create(@Body(ValidationPipe) createCartDto: CreateCartDto) {
     return this.cartsService.create(createCartDto);
   }
 
-  @ApiHeader({
-    name: 'x-api-key',
-    description: 'Provide auth key',
-    required: true,
-  })
+  @ApiAuth()
   @Put(':id')
   update(@Param('id') id: string, @Body() updateCartDto: UpdateCartDto) {
     return this.cartsService.update(id, updateCartDto);
   }
 
-  @ApiHeader({
-    name: 'x-api-key',
-    description: 'Provide auth key',
-    required: true,
-  })
+  @ApiAuth()
   @Get()
   findAll() {
     return this.cartsService.findAll();
   }
 
-  @ApiHeader({
-    name: 'x-api-key',
-    description: 'Provide auth key',
-    required: true,
-  })
+  @ApiAuth()
   @Get(':id')
   findOne(
     @Param('id')
@@ -61,11 +46,7 @@ export class CartsController {
     return this.cartsService.findOne(id);
   }
 
-  @ApiHeader({
-    name: 'x-api-key',
-    description: 'Provide auth key',
-    required: true,
-  })
+  @ApiAuth()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.cartsService.remove(id);
