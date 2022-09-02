@@ -1,5 +1,19 @@
 import { isObject, isString } from './shared/types/types.helper';
-import { ENV } from './shared/env/env.contants';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const RAW_ENV_VARIABLES = Object.freeze({
+  PUBLIC_ACCESS_KEY: process.env.PUBLIC_ACCESS_KEY,
+  PRIVATE_ACCESS_KEY: process.env.PRIVATE_ACCESS_KEY,
+  REGION: process.env.REGION,
+  LOCAL_DATABASE_ENDPOINT: process.env.LOCAL_DATABASE_ENDPOINT || false,
+  TABLE_AUTOCREATE: process.env.TABLE_AUTOCREATE,
+  TABLE_AUTOUPDATE: process.env.TABLE_AUTOUPDATE,
+  APP_NAME: process.env.APP_NAME,
+  APP_VERSION: process.env.npm_package_version,
+  DEVELOPMENT: process.env.DEVELOPMENT,
+});
 
 type Options = Record<string, string | boolean | number>;
 
@@ -94,15 +108,16 @@ class AppConfig {
 }
 
 new AppConfig()
-  .setServiceName(ENV.APP_NAME)
-  .setServiceVersion(ENV.APP_VERSION)
+  .setServiceName(RAW_ENV_VARIABLES.APP_NAME)
+  .setServiceVersion(RAW_ENV_VARIABLES.APP_VERSION)
   .setDatabaseOptions({
-    accessKey: ENV.PUBLIC_ACCESS_KEY,
-    secretKey: ENV.PRIVATE_ACCESS_KEY,
-    region: ENV.REGION,
-    localDatabaseEndpoint: ENV.LOCAL_DATABASE_ENDPOINT || false,
-    tableAutoCreate: ENV.TABLE_AUTOCREATE === 'true',
-    tableAutoUpdate: ENV.TABLE_AUTOUPDATE === 'true',
-  });
+    accessKey: RAW_ENV_VARIABLES.PUBLIC_ACCESS_KEY,
+    secretKey: RAW_ENV_VARIABLES.PRIVATE_ACCESS_KEY,
+    region: RAW_ENV_VARIABLES.REGION,
+    localDatabaseEndpoint: RAW_ENV_VARIABLES.LOCAL_DATABASE_ENDPOINT || false,
+    tableAutoCreate: RAW_ENV_VARIABLES.TABLE_AUTOCREATE === 'true',
+    tableAutoUpdate: RAW_ENV_VARIABLES.TABLE_AUTOUPDATE === 'true',
+  })
+  .setMetaData({ isDevelopment: RAW_ENV_VARIABLES.DEVELOPMENT === 'true' });
 
 export default AppConfig;
