@@ -6,8 +6,12 @@ import { applyDocs } from './api-docs/apply-docs';
 import AppConfig from './app.config';
 
 async function bootstrap() {
+  console.info('Bootstraping started');
+
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalPipes(new ValidationPipe());
+
   app.useGlobalFilters(new HttpExceptionFilter());
 
   applyDocs(app);
