@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './exception-filters/http-exception-filter';
 import { applyDocs } from './api-docs/apply-docs';
+import AppConfig from './app.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,7 +12,11 @@ async function bootstrap() {
 
   applyDocs(app);
 
-  await app.listen(3000);
+  const port = new AppConfig().build().metaData.port;
+
+  console.info(`The app port is ${port}. It's successfully run`);
+
+  await app.listen(port);
 }
 
 bootstrap().then();
