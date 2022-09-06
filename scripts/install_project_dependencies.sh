@@ -3,8 +3,6 @@
 #give permission for everything in the express-app directory
 sudo chmod -R 777 /home/ec2-user/express-app
 
-npm install pm2 -g
-
 cd /home/ec2-user/express-app
 
 export NVM_DIR="$HOME/.nvm"
