@@ -16,9 +16,9 @@ async function bootstrap() {
 
   const port = new AppConfig().build().metaData.port;
 
-  console.info(`The app is up and running on ${port} port`);
-
-  await app.listen(port);
+  await app.listen(port, () => {
+    console.info(`The app is up and running on ${port} port`);
+  });
 }
 
 bootstrap().then();
