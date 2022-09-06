@@ -52,6 +52,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     console.log('default error');
 
+    console.log(
+      JSON.stringify(exception),
+      exception.message,
+      exception,
+      'exception',
+    );
+
     return this.response(new BaseException(), request, response);
   }
 }
