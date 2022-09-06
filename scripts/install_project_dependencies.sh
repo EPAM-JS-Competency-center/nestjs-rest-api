@@ -11,7 +11,7 @@ export NVM_DIR="$HOME/.nvm"
 
 npm install -g pm2
 
-npm install
+npm install --legacy-peer-deps
 
 # Use AWS Secrets service for setting env variables in prod;
 export REGION=eu-central-1
@@ -20,4 +20,4 @@ export TABLE_AUTOUPDATE=true
 export DEVELOPMENT=false
 export APP_NAME=Shop
 
-npm build
+npm run build
