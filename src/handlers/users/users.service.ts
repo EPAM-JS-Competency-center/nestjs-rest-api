@@ -38,15 +38,12 @@ export class UsersService {
   }
 
   async findAll(lastReadItemId: string, pageSize: number) {
-    console.log('findAll start');
     const requestBuilder = this.userModel
       /** Query by index */
       .query('relationKey')
       .eq(USER_RELATIONS.USER_DETAILS)
       .sort('descending' as any)
       .limit(pageSize);
-
-    console.log('raw requestBuilder', requestBuilder);
 
     if (lastReadItemId) {
       const item = await this.findOne(lastReadItemId);
@@ -59,11 +56,7 @@ export class UsersService {
       requestBuilder.startAt(key);
     }
 
-    console.log('requestBuilder', requestBuilder);
-
     const data = await requestBuilder.exec();
-
-    console.log('data', data);
 
     return new ListingResponse<User, ReturnType<UserModel['getJSON']>>(
       data,
