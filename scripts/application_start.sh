@@ -1,5 +1,5 @@
-pm2 stop all
+~/.nvm/versions/node/v16.17.0/bin/pm2 stop all
 
 cd /home/ec2-user/express-app
 
-pm2 start npm -- run start:prod
+~/.nvm/versions/node/v16.17.0/bin/pm2 start npm -- run start:prod
