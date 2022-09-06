@@ -33,17 +33,24 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
+    console.log('Catch starting', ctx, response, request);
+
     if (exception.status) {
+      console.log('has status', exception.status, exception);
       return this.response(exception, request, response);
     }
 
     const getException = this.exceptionsMap[exception.message];
+    console.log('custom error', getException);
 
     if (getException) {
       const exception = getException();
+      console.log('in custom error handler', exception);
 
       return this.response(exception, request, response);
     }
+
+    console.log('default error');
 
     return this.response(new BaseException(), request, response);
   }
