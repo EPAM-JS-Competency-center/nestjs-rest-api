@@ -22,6 +22,10 @@ export TABLE_AUTOUPDATE=true
 export DEVELOPMENT=false
 export APP_NAME=Shop
 
+echo "Start building"
+
 npm build
+
+echo "End building"
 
 pm2 start npm -- run start:prod --name api

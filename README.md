@@ -30,7 +30,8 @@ There is one entity called `User` that has nesting objects called `Carts`, in ot
 sudo yum -y update <br>
 sudo yum -y install ruby <br>
 sudo yum -y install wget <br>
-cd /home/ec2-user <br>
-wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install <br>
+sudo wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install <br>
 sudo chmod +x ./install <br>
 sudo ./install auto <br>
+
+## Check code deploy service status `sudo service codedeploy-agent status`
