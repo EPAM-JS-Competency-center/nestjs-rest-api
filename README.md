@@ -23,3 +23,15 @@ NestJS Rest-Api powered by AWS DynamoDB
 ## `userId` is a hash key and `relationKey` is a range key
 
 There is one entity called `User` that has nesting objects called `Carts`, in other words, `One User` to `Many Carts` (One-To-Many)
+
+# EC2 script on creation to install the CodeDeploy Agent:
+
+#!/bin/bash <br>
+sudo yum -y update <br>
+sudo yum -y install ruby <br>
+sudo yum -y install wget <br>
+sudo wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install <br>
+sudo chmod +x ./install <br>
+sudo ./install auto <br>
+
+## Check code deploy service status `sudo service codedeploy-agent status`

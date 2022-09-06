@@ -7,16 +7,18 @@ import AppConfig from './app.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalPipes(new ValidationPipe());
+
   app.useGlobalFilters(new HttpExceptionFilter());
 
   applyDocs(app);
 
   const port = new AppConfig().build().metaData.port;
 
-  console.info(`The app port is ${port}. It's successfully run`);
-
-  await app.listen(port);
+  await app.listen(port, () => {
+    console.info(`The app is up and running on ${port} port`);
+  });
 }
 
 bootstrap().then();
