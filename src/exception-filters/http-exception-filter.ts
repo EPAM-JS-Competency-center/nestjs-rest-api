@@ -59,6 +59,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
       'exception',
     );
 
-    return this.response(new BaseException(), request, response);
+    return this.response(
+      new BaseException(exception?.message),
+      request,
+      response,
+    );
   }
 }

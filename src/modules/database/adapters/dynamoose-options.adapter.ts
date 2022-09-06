@@ -18,6 +18,7 @@ export const adaptDynamooseOptions = (
       prefix: `${serviceName || 'Service'}-`,
       suffix: '-Table',
       update: databaseOptions.tableAutoUpdate,
+      initialize: true,
     },
   };
 };
