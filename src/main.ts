@@ -6,8 +6,6 @@ import { applyDocs } from './api-docs/apply-docs';
 import AppConfig from './app.config';
 
 async function bootstrap() {
-  console.info('Bootstraping started');
-
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalPipes(new ValidationPipe());
@@ -18,7 +16,7 @@ async function bootstrap() {
 
   const port = new AppConfig().build().metaData.port;
 
-  console.info(`The app port is ${port}. It's successfully run`);
+  console.info(`The app is up and running on ${port} port`);
 
   await app.listen(port);
 }
