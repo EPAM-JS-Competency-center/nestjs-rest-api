@@ -2619,13 +2619,6 @@ dynamoose-logger@^3.1.0:
     js-object-utilities "^2.1.0"
     uuid "^8.3.2"
 
-dynamoose-utils@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/dynamoose-utils/-/dynamoose-utils-3.0.2.tgz#da1224fcb4e451c7a8affdac1ab41d0c1613387e"
-  integrity sha512-O/NNmGeUVXomBDWBpGkbjft/jpl4vfthbWun8UvCuDDkEXEalgxu8XYP6dSYwMTwKEcTZNRaX5E/Dp9A1fWR+w==
-  dependencies:
-    js-object-utilities "^2.1.0"
-
 dynamoose-utils@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/dynamoose-utils/-/dynamoose-utils-3.1.0.tgz#041ba8ebe1de4f1671422f4f48a5e851fd675680"
@@ -2633,14 +2626,14 @@ dynamoose-utils@^3.1.0:
   dependencies:
     js-object-utilities "^2.1.0"
 
-dynamoose@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-3.0.2.tgz#5945aeea0dd6e7d093c56150799129d7d8921d09"
-  integrity sha512-cqciPyxCXpNNhJKPutgnN4nWVlnCmkJrqyYD5PFWcTfqhL83tKAGFGa9nIFIPvqoo/wjPWNYw+UUVvDi3Hs79w==
+dynamoose@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-3.1.0.tgz#31d02b8c0039296160363e76d9a7596cf0801bfe"
+  integrity sha512-YR1AeTp6/aOyM5dZIUAKpgmwn7YxlJNSz00zminFSzlpfxkq/6n9qa0Ws79XwdM0+Q4AVRvwhWtlMI+H2Zi59Q==
   dependencies:
     "@aws-sdk/client-dynamodb" "^3.142.0"
     "@aws-sdk/util-dynamodb" "^3.142.0"
-    dynamoose-utils "^3.0.2"
+    dynamoose-utils "^3.1.0"
     js-object-utilities "^2.1.0"
 
 ee-first@1.1.1:
