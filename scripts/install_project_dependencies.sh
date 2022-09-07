@@ -20,4 +20,13 @@ export TABLE_AUTOUPDATE="true"
 export DEVELOPMENT="false"
 export APP_NAME="Shop"
 
+file_location=./.env
+cat >$file_location <<EOF
+       REGION="eu-central-1"
+       TABLE_AUTOCREATE="true"
+       TABLE_AUTOUPDATE="true"
+       DEVELOPMENT="false"
+       APP_NAME="Shop"
+EOF
+
 npm run build
