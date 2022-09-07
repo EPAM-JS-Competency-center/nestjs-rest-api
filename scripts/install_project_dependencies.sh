@@ -14,10 +14,10 @@ npm install pm2 -g
 npm install --legacy-peer-deps
 
 # Use AWS Secrets service for setting env variables in prod;
-export REGION=eu-central-1
-export TABLE_AUTOCREATE=true
-export TABLE_AUTOUPDATE=true
-export DEVELOPMENT=false
-export APP_NAME=Shop
+export REGION="eu-central-1"
+export TABLE_AUTOCREATE="true"
+export TABLE_AUTOUPDATE="true"
+export DEVELOPMENT="false"
+export APP_NAME="Shop"
 
 npm run build
