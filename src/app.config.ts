@@ -127,4 +127,6 @@ new AppConfig()
     port: parseInt(RAW_ENV_VARIABLES.PORT) || 3000,
   });
 
+console.info('App config', new AppConfig().build());
+
 export default AppConfig;
