@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import * as dynamoose from 'dynamoose';
 import { DatabaseProviderValues } from './constants';
+import { logger } from './utils/logger';
 
 export interface DatabaseOptions {
   localEndpoint?: string | boolean;
@@ -9,7 +10,7 @@ export interface DatabaseOptions {
   region?: string;
 }
 
-const initialization = (options: DatabaseOptions) => {
+const initialization = async (options: DatabaseOptions) => {
   if (options.localEndpoint) {
     try {
       dynamoose.aws.ddb.local(options.localEndpoint as string);
@@ -32,6 +33,14 @@ const initialization = (options: DatabaseOptions) => {
         `An error occurred while remote connection: ${e.message || '-'}`,
       );
     }
+  }
+
+  try {
+    (await dynamoose.logger()).providers.set(logger);
+  } catch (e) {
+    console.error(
+      `An error occurred while logger setting: ${e.message || '-'}`,
+    );
   }
 };
 
