@@ -7,12 +7,24 @@ import {
 import { CartsModule } from './handlers/carts/carts.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ApiKeyAuthGuard } from './guards/api-key-auth.guard';
-import { DatabaseModule } from './modules/database/database.module';
 import { UsersModule } from './handlers/users/users.module';
 import { PagerMiddleware } from './middlewares/PagerMiddleware';
+import { DatabaseModule } from './database/database.module';
+import AppConfig from './app.config';
+
+const { databaseOptions } = new AppConfig().build();
 
 @Module({
-  imports: [CartsModule, UsersModule, DatabaseModule],
+  imports: [
+    CartsModule,
+    UsersModule,
+    DatabaseModule.forRoot({
+      region: databaseOptions.region,
+      secretKey: databaseOptions.secretKey,
+      accessKey: databaseOptions.accessKey,
+      localEndpoint: databaseOptions.localDatabaseEndpoint,
+    }),
+  ],
   controllers: [],
   providers: [
     {

@@ -4382,11 +4382,6 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nestjs-dynamoose@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/nestjs-dynamoose/-/nestjs-dynamoose-0.5.0.tgz#b81651eec4865d5b9035a7624f3b3fe127e34704"
-  integrity sha512-cVbvCjMQu72tJidZUFRoSgKlqorpFGjLxfljpTWTcXi5Q0RmraYIpBxfWgiYp5LfovnrJQZDeyLnKK4/IhsdiQ==
-
 node-emoji@1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.11.0.tgz#69a0150e6946e2f115e9d7ea4df7971e2628301c"
