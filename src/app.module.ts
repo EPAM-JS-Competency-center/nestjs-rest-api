@@ -11,6 +11,7 @@ import { UsersModule } from './handlers/users/users.module';
 import { PagerMiddleware } from './middlewares/PagerMiddleware';
 import { DatabaseModule } from './database/database.module';
 import AppConfig from './app.config';
+import { SystemModule } from './handlers/system/system.module';
 
 const { databaseOptions } = new AppConfig().build();
 
@@ -24,6 +25,7 @@ const { databaseOptions } = new AppConfig().build();
       accessKey: databaseOptions.accessKey,
       localEndpoint: databaseOptions.localDatabaseEndpoint,
     }),
+    SystemModule,
   ],
   controllers: [],
   providers: [

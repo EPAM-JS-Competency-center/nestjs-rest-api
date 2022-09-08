@@ -14,7 +14,7 @@ export abstract class BaseRepository<Entity extends AnyItem> {
   protected entityName: string;
   protected model: Model<Entity>;
 
-  get table() {
+  requestTable() {
     return this.model.table();
   }
 
@@ -40,27 +40,29 @@ export abstract class BaseRepository<Entity extends AnyItem> {
     });
   }
 
-  protected async updateTableIndexes() {
-    const defaultConfig = this.table.getInternalProperties(TABLE_KEY);
+  public async updateTableIndexes() {
+    const table = this.requestTable();
+
+    const defaultConfig = table.getInternalProperties(TABLE_KEY);
 
     const newOptions: TableOptions = {
       ...defaultConfig.options,
       update: [TableUpdateOptions.indexes],
     };
 
-    this.table.setInternalProperties(TABLE_KEY, {
+    table.setInternalProperties(TABLE_KEY, {
       ...defaultConfig,
       options: newOptions,
     });
 
     try {
-      await updateTable(this.table);
+      await updateTable(table);
     } catch (e) {
       console.error(
         `An error occurred while table updating: ${e.message || '-'}`,
       );
     } finally {
-      this.table.setInternalProperties(TABLE_KEY, defaultConfig);
+      table.setInternalProperties(TABLE_KEY, defaultConfig);
     }
   }
 }
