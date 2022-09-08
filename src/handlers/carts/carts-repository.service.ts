@@ -34,7 +34,7 @@ export class CartsRepositoryService {
   }
 
   async findOne(id: string) {
-    return this.model.get(parseUserPrimaryKey(id) as any);
+    return this.model.get(parseUserPrimaryKey(id));
   }
 
   async update(id: string, updateCartDto: UpdateCartDto) {
@@ -46,6 +46,6 @@ export class CartsRepositoryService {
   async remove(id: string) {
     const key = parseUserPrimaryKey(id);
 
-    return this.model.delete(key as any);
+    return this.model.delete(key);
   }
 }
