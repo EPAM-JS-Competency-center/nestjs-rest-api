@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel, Model } from 'nestjs-dynamoose';
-import { User, UserKey, UserModel } from './users.model';
+import { User, UserModel } from './users.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as uuid from 'uuid';
 import { USER_RELATIONS } from './users.relations';
@@ -8,18 +7,21 @@ import {
   getUserPrimaryKey,
   parseUserPrimaryKey,
 } from './utils/user-primary-key.utils';
-import { USER_SCHEMA_KEYS, USER_TITLE } from './users.schema';
+import { USER_SCHEMA_KEYS } from './users.schema';
 import { getIsUserParsedPrimaryKeyValid } from './utils/is-user-parsed-primary-key-valid.util';
 import { ListingResponse } from '../../shared/utils/listing-response.util';
 import { USERS_EXCEPTION_STRATEGIES_KEYS } from './users-exception.strategies';
 import { BASE_EXCEPTION_STRATEGIES_KEYS } from '../../shared/http/base-exception.strategies';
+import { UsersRepositoryService } from './users-repository.service';
+import { SortOrder } from 'dynamoose/dist/General';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectModel(USER_TITLE)
-    private userModel: Model<User, Partial<UserKey>>,
-  ) {}
+  constructor(private userRepositoryService: UsersRepositoryService) {}
+
+  get model() {
+    return this.userRepositoryService.getModel();
+  }
 
   async findOne(id: string) {
     const key = parseUserPrimaryKey(id);
@@ -28,7 +30,7 @@ export class UsersService {
       throw new Error(BASE_EXCEPTION_STRATEGIES_KEYS.PROVIDED_ID_INVALID);
     }
 
-    const item = await this.userModel.get(key);
+    const item = await this.model.get(key);
 
     if (!item) {
       throw new Error(USERS_EXCEPTION_STRATEGIES_KEYS.USER_NOT_FOUND);
@@ -38,11 +40,10 @@ export class UsersService {
   }
 
   async findAll(lastReadItemId: string, pageSize: number) {
-    const requestBuilder = this.userModel
-      /** Query by index */
+    const requestBuilder = this.model
       .query('relationKey')
       .eq(USER_RELATIONS.USER_DETAILS)
-      .sort('descending' as any)
+      .sort(SortOrder.descending)
       .limit(pageSize);
 
     if (lastReadItemId) {
@@ -71,7 +72,7 @@ export class UsersService {
   }
 
   async create(createDto: CreateUserDto) {
-    const createdItem = await this.userModel.create({
+    const createdItem = await this.model.create({
       userId: uuid.v4(),
       relationKey: USER_RELATIONS.USER_DETAILS,
       name: createDto.name,

@@ -1,5 +1,4 @@
 import { Schema } from 'dynamoose';
-import { DynamooseModule } from 'nestjs-dynamoose';
 
 export const UserSchema = new Schema(
   {
@@ -12,7 +11,6 @@ export const UserSchema = new Schema(
       rangeKey: true,
       index: {
         type: 'global',
-        name: 'relationKeyGlobalIndex',
         rangeKey: 'createdAt',
       },
     },
@@ -27,11 +25,3 @@ export const UserSchema = new Schema(
 );
 
 export const USER_SCHEMA_KEYS = [UserSchema.hashKey, UserSchema.rangeKey];
-
-export const USER_TITLE = 'User';
-export const UserSchemaModule = DynamooseModule.forFeature([
-  {
-    name: USER_TITLE,
-    schema: UserSchema,
-  },
-]);
