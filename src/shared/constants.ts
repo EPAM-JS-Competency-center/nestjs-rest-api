@@ -7,3 +7,7 @@ export enum DefaultPaginationValues {
   PAGE_SIZE = 15,
   PAGE_NUMBER = 1,
 }
+
+export enum DbDateValues {
+  CURRENT_TIMESTAMP = 'CURRENT_TIMESTAMP',
+}

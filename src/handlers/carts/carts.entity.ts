@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Currency } from './constants';
 import { User } from '../users/users.entity';
+import { DbDateValues } from '../../shared/constants';
 
 const BALANCE_FIELD = 'balance';
 
@@ -22,11 +23,11 @@ export class Cart {
   @Column({})
   [BALANCE_FIELD]: number;
 
-  @Column({ default: new Date() })
-  createdAt: Date;
+  @Column({ type: 'timestamp', default: () => DbDateValues.CURRENT_TIMESTAMP })
+  createdAt: string;
 
-  @Column({ default: new Date() })
-  updatedAt: Date;
+  @Column({ type: 'timestamp', default: () => DbDateValues.CURRENT_TIMESTAMP })
+  updatedAt: string;
 
   @ManyToOne(() => User, (user: User) => user.carts)
   user: User;

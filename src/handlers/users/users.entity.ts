@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Cart } from '../carts/carts.entity';
+import { DbDateValues } from '../../shared/constants';
 
 @Entity()
 export class User {
@@ -12,14 +13,11 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column({ default: new Date() })
-  createdAt: Date;
+  @Column({ type: 'timestamp', default: () => DbDateValues.CURRENT_TIMESTAMP })
+  createdAt: string;
 
-  @Column()
-  phoneNumber: string;
-
-  @Column({ default: new Date() })
-  updatedAt: Date;
+  @Column({ type: 'timestamp', default: () => DbDateValues.CURRENT_TIMESTAMP })
+  updatedAt: string;
 
   @OneToMany(() => Cart, (cart: Cart) => cart.user)
   carts: Cart[];
