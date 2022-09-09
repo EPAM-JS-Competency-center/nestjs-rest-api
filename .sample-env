@@ -1,0 +1,7 @@
+ENDPOINT="YourDbConnectionEndpoint"
+USER="YourUserName"
+DB_PORT="YourDbPort"
+PASSWORD="YourPassword"
+TABLE_SCHEMA_AUTOUPDATE="false"
+DEVELOPMENT="false"
+PORT="3000"
