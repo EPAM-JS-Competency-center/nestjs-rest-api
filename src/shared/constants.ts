@@ -11,3 +11,8 @@ export enum DefaultPaginationValues {
 export enum DbDateValues {
   CURRENT_TIMESTAMP = 'CURRENT_TIMESTAMP',
 }
+
+export enum SortOrder {
+  ASC = 'ASC',
+  DESC = 'DESC',
+}

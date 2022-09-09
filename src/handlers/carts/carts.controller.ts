@@ -25,15 +25,15 @@ export class CartsController {
   }
 
   @ApiAuth()
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateCartDto: UpdateCartDto) {
-    return this.cartsService.update(id, updateCartDto);
-  }
-
-  @ApiAuth()
   @Get()
   findAll() {
     return this.cartsService.findAll();
+  }
+
+  @ApiAuth()
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateCartDto: UpdateCartDto) {
+    return this.cartsService.update(+id, updateCartDto);
   }
 
   @ApiAuth()
@@ -42,12 +42,12 @@ export class CartsController {
     @Param('id')
     id: string,
   ) {
-    return this.cartsService.findOne(id);
+    return this.cartsService.findOne(+id);
   }
 
   @ApiAuth()
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.cartsService.remove(id);
+    return this.cartsService.remove(+id);
   }
 }
