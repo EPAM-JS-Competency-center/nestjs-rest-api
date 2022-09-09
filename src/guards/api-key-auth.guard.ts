@@ -1,12 +1,10 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Request } from 'express';
 import { Reflector } from '@nestjs/core';
 import { UnauthorizedException } from '../exceptions/UnauthorizedException';
-import { NotFoundException } from '../exceptions/NotFoundException';
+
+export const AUTH_HEADER = 'x-api-key';
+export const SECRET_AUTH_KEY = 'secret';
 
 @Injectable()
 export class ApiKeyAuthGuard implements CanActivate {
@@ -21,13 +19,13 @@ export class ApiKeyAuthGuard implements CanActivate {
       return true;
     }
     const req = context.switchToHttp().getRequest<Request>();
-    const apiKeyHeaderValue = req.headers['x-api-key'];
+    const apiKeyHeaderValue = req.headers[AUTH_HEADER];
     if (!apiKeyHeaderValue) {
       throw new UnauthorizedException('Api key was not provided');
     }
 
-    if (apiKeyHeaderValue !== 'secret') {
-      throw new NotFoundException('Api key doesn\'t match');
+    if (apiKeyHeaderValue !== SECRET_AUTH_KEY) {
+      throw new UnauthorizedException("Api key doesn't match");
     }
     return true;
   }

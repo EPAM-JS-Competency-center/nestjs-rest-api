@@ -1,7 +1,7 @@
 import { BaseException } from './BaseException';
 
 export class UnauthorizedException extends BaseException {
-  status: number = 401;
+  status = 401;
   constructor(...args) {
     super(...args);
   }

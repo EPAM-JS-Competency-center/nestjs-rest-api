@@ -1,5 +1,5 @@
 ENDPOINT="YourDbConnectionEndpoint"
-USER="YourUserName"
+USER_NAME="YourUserName"
 DB_PORT="YourDbPort"
 PASSWORD="YourPassword"
 TABLE_SCHEMA_AUTOUPDATE="false"

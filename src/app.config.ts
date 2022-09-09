@@ -5,7 +5,7 @@ dotenv.config();
 
 const RAW_ENV_VARIABLES = Object.freeze({
   ENDPOINT: process.env.ENDPOINT,
-  USER: process.env.USER,
+  USER: process.env.USER_NAME,
   DB_PORT: process.env.DB_PORT,
   PASSWORD: process.env.PASSWORD,
   TABLE_SCHEMA_AUTOUPDATE: process.env.TABLE_SCHEMA_AUTOUPDATE,
