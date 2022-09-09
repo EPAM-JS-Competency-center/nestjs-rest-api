@@ -25,6 +25,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       path: request.url,
       message: exception.message,
       stack: exception.stack,
+      details: exception.response?.message || '',
     });
   }
 

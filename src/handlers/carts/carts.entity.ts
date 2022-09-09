@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   Check,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Currency } from './constants';
 import { User } from '../users/users.entity';
@@ -30,5 +31,6 @@ export class Cart {
   updatedAt: string;
 
   @ManyToOne(() => User, (user: User) => user.carts)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 }

@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { DataSource, Repository } from 'typeorm';
 import { User } from './users.entity';
+import { USERS_EXCEPTION_STRATEGIES_KEYS } from './users-exception.strategies';
+import { ListingResponse } from '../../shared/utils/listing-response.util';
+import { Pager } from '../../shared/utils/pager.util';
 
 @Injectable()
 export class UsersService {
@@ -11,15 +14,32 @@ export class UsersService {
     this.repository = this.dataSource.getRepository<User>(User);
   }
 
-  async findOne(id: string) {
-    return { id: 0 };
+  async findOne(id: number) {
+    const candidate = await this.repository.findOneBy({ id: id });
+
+    if (!candidate) {
+      throw new Error(USERS_EXCEPTION_STRATEGIES_KEYS.USER_NOT_FOUND);
+    }
+
+    return candidate;
   }
 
   async findAll(pageNumber: number, pageSize: number) {
-    return [];
+    const pager = new Pager(pageNumber, pageSize);
+
+    const [item, count] = await this.repository.findAndCount({
+      order: {
+        createdAt: 'DESC',
+      },
+      ...pager,
+    });
+
+    return new ListingResponse<User>(item, count).toJSON();
   }
 
   async create(createDto: CreateUserDto) {
-    return { id: 0 };
+    const user = await this.repository.save(createDto);
+
+    return { id: user.id };
   }
 }
