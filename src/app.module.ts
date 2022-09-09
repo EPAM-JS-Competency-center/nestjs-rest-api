@@ -9,12 +9,11 @@ import { APP_GUARD } from '@nestjs/core';
 import { ApiKeyAuthGuard } from './guards/api-key-auth.guard';
 import { UsersModule } from './handlers/users/users.module';
 import { PagerMiddleware } from './middlewares/PagerMiddleware';
-import AppConfig from './app.config';
-
-const { databaseOptions } = new AppConfig().build();
+import { TypeOrmModule } from '@nestjs/typeorm';
+import ormConfig from './ormconfig';
 
 @Module({
-  imports: [CartsModule, UsersModule],
+  imports: [CartsModule, UsersModule, TypeOrmModule.forRoot(ormConfig)],
   controllers: [],
   providers: [
     {

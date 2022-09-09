@@ -12,6 +12,7 @@ const RAW_ENV_VARIABLES = Object.freeze({
   APP_VERSION: process.env.npm_package_version,
   DEVELOPMENT: process.env.DEVELOPMENT,
   PORT: process.env.PORT,
+  DATABASE_NAME: process.env.DATABASE_NAME,
 });
 
 type MetaData = {
@@ -22,9 +23,10 @@ type MetaData = {
 export interface DatabaseOptions {
   endpoint: string;
   user: string;
-  dbPort: string;
+  dbPort: number;
   password: string;
   tableSchemaAutoupdate: boolean;
+  dbName: string;
 }
 
 export interface Config {
@@ -114,8 +116,9 @@ new AppConfig()
     user: RAW_ENV_VARIABLES.USER,
     password: RAW_ENV_VARIABLES.PASSWORD,
     endpoint: RAW_ENV_VARIABLES.ENDPOINT,
-    dbPort: RAW_ENV_VARIABLES.DB_PORT,
+    dbPort: parseInt(RAW_ENV_VARIABLES.DB_PORT),
     tableSchemaAutoupdate: RAW_ENV_VARIABLES.TABLE_SCHEMA_AUTOUPDATE === 'true',
+    dbName: RAW_ENV_VARIABLES.DATABASE_NAME,
   })
   .setMetaData({
     isDevelopment: RAW_ENV_VARIABLES.DEVELOPMENT === 'true',
