@@ -15,6 +15,9 @@ export class User {
   @Column({ default: new Date() })
   createdAt: Date;
 
+  @Column()
+  phoneNumber: string;
+
   @Column({ default: new Date() })
   updatedAt: Date;
 

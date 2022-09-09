@@ -17,8 +17,8 @@ export const ormConfig: PostgresConnectionOptions = {
   migrationsTableName: 'migrations',
   migrationsRun: false,
   maxQueryExecutionTime: 3000,
-  entities: ['dist/src/handlers/**/*.entity.js'],
-  migrations: ['dist/src/migrations/*.js'],
+  entities: ['dist/handlers/**/*.entity.js'],
+  migrations: ['src/migrations/*.ts'],
   ssl: process.env.SLL === 'true' ? { rejectUnauthorized: false } : false,
   namingStrategy: new SnakeNamingStrategy(),
 };
