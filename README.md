@@ -9,3 +9,17 @@ NestJS Rest-Api powered by AWS RDS PostgreSQl
 3. Run `yarn start:dev` (`npm run start:dev`) for development or `yarn start` (`npm start`) to up the server
 4. Connect to swagger using `http://localhost:3000/docs` url. Provide simple auth typing `secret` in `x-auth-key` input
    <br>![img_2.png](readme-files/swagger-auth-sample.png)
+
+# Table updates
+
+1. Change any entity class and save file
+2. Run `NAME=Init npm run generate-migration` to generate a migration. Use custom names that are clear and correspond to
+   table changes e.g. `NAME=AddPhoneNumberColumnToUser npm run generate-migration`
+3. Make sure the recently generated migration is in `migrations` folder
+4. Run `npm run run-migration` to apply migrations to the database
+5. If you want to revert a migration, run `npm run revert-migration`, but note: it cancels the last migration
+
+If you make `git clone` or `git pull` in a project, you should run all migrations (if there are some changes in tables
+made by another dev) before development starting
+
+Do not use `TABLE_SCHEMA_AUTOUPDATE=true` in prod

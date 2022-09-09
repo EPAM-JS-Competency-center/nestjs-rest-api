@@ -10,7 +10,7 @@ import { ApiKeyAuthGuard } from './guards/api-key-auth.guard';
 import { UsersModule } from './handlers/users/users.module';
 import { PagerMiddleware } from './middlewares/PagerMiddleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import ormConfig from './ormconfig';
+import { ormConfig } from './ormconfig';
 
 @Module({
   imports: [CartsModule, UsersModule, TypeOrmModule.forRoot(ormConfig)],

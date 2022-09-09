@@ -1,10 +1,11 @@
-import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import AppConfig from './app.config';
+import { DataSource } from 'typeorm';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 const { databaseOptions } = new AppConfig().build();
 
-const ormConfig: PostgresConnectionOptions = {
+export const ormConfig: PostgresConnectionOptions = {
   username: databaseOptions.user,
   password: databaseOptions.password,
   type: 'postgres',
@@ -22,4 +23,6 @@ const ormConfig: PostgresConnectionOptions = {
   namingStrategy: new SnakeNamingStrategy(),
 };
 
-export default ormConfig;
+const ormDataSource = new DataSource(ormConfig);
+
+export default ormDataSource;
