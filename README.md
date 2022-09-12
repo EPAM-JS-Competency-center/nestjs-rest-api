@@ -23,3 +23,19 @@ If you make `git clone` or `git pull` in a project, you should run all migration
 made by another dev) before development starting
 
 Do not use `TABLE_SCHEMA_AUTOUPDATE=true` in prod
+
+# Deploy to EC2 instance
+
+1. Create an RDS Postgresql instance;
+2. Connect to RDS and create a database;
+3. Edit `scripts/install_project_dependencies.sh` by replacing your env variables;
+4. Create an EC2 instance based on Amazon Linux and provide this script to `user data` input while creation to install
+   the CodeDeploy Agent:
+
+#!/bin/bash <br>
+sudo yum -y update <br>
+sudo yum -y install ruby <br>
+sudo yum -y install wget <br>
+sudo wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install <br>
+sudo chmod +x ./install <br>
+sudo ./install auto <br>
