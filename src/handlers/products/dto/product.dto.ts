@@ -3,40 +3,47 @@ import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 export class ProductDto {
   @IsNumber()
   @IsNotEmpty()
-  count: number;
+    count: number;
+
   @IsString()
   @IsNotEmpty()
-  id: string;
+    id: string;
+
   @IsString()
   @IsOptional()
-  description: string;
+    description: string;
+
   @IsNumber()
   @IsNotEmpty()
-  price: number;
+    price: number;
+
   @IsString()
   @IsNotEmpty()
-  title: string;
+    title: string;
 }
 
 export class ProductUpdateDto {
   @IsNumber()
   @IsNotEmpty()
-  count: number;
+    count: number;
+
   @IsString()
   @IsOptional()
-  description: string;
+    description: string;
+
   @IsNumber()
   @IsNotEmpty()
-  price: number;
+    price: number;
+
   @IsString()
   @IsNotEmpty()
-  title: string;
+    title: string;
 }
 
 export class ProductIdDto {
   @IsString()
   @IsNotEmpty()
-  id: string;
+    id: string;
 }
 
 export class ProductRespDto {

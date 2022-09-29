@@ -4,7 +4,7 @@ import { BaseException } from '../exceptions/BaseException';
 
 @Catch(BaseException)
 export class CustomExceptionFilter implements ExceptionFilter {
-  catch(exception: BaseException, host: ArgumentsHost) {
+  catch (exception: BaseException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();

@@ -11,9 +11,9 @@ import { SKIP_AUTH_KEY } from './skip-auth.decorator';
 
 @Injectable()
 export class ApiKeyAuthGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
+  constructor (private readonly reflector: Reflector) {}
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  async canActivate (context: ExecutionContext): Promise<boolean> {
     const skipAuth = this.reflector.get<boolean>(
       SKIP_AUTH_KEY,
       context.getHandler(),
@@ -24,7 +24,7 @@ export class ApiKeyAuthGuard implements CanActivate {
     }
 
     const req = context.switchToHttp().getRequest<Request>();
-    const apiKeyHeaderValue = req.headers['x-api-key'];
+    const apiKeyHeaderValue = req.headers[ 'x-api-key' ];
 
     if (!apiKeyHeaderValue) {
       throw new UnauthorizedException('Api key was not provided');

@@ -10,26 +10,26 @@ import { START_DATE, PRECISION } from './utils.constants';
       useValue: {
         START_DATE,
         PRECISION,
-      }
+      },
     },
     {
       provide: 'DateService',
-      useFactory(constants) {
-        console.log('Date service was created')
+      useFactory (constants) {
+        // console.log('Date service was created');
 
         return {
-          getCurrentDate() {
+          getCurrentDate () {
             return new Date();
           },
-          getTimeFromStart() {
+          getTimeFromStart () {
             return new Date().getTime() - constants.START_DATE;
-          }
-        }
+          },
+        };
       },
-      inject: ['Constants'],
-      scope: Scope.TRANSIENT
-    }
+      inject: [ 'Constants' ],
+      scope: Scope.TRANSIENT,
+    },
   ],
-  exports: [UtilsService, 'DateService'],
+  exports: [ UtilsService, 'DateService' ],
 })
 export class UtilsModule {}

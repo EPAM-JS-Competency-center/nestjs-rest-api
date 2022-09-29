@@ -2,8 +2,8 @@ import { IsString } from 'class-validator';
 
 export class UpdateCartDto {
   @IsString()
-  balance: string;
+    balance: string;
 
   @IsString()
-  currency: string;
+    currency: string;
 }

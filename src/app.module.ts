@@ -6,13 +6,13 @@ import { ApiKeyAuthGuard } from './guards/api-key-auth.guard';
 import { ProductsModule } from './handlers/products/products.module';
 
 @Module({
-  imports: [CartsModule, ConfigModule, ProductsModule],
+  imports: [ CartsModule, ConfigModule, ProductsModule ],
   controllers: [],
   providers: [
     {
       provide: APP_GUARD,
       useClass: ApiKeyAuthGuard,
-    }
+    },
   ],
 })
 export class AppModule {}

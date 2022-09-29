@@ -15,23 +15,23 @@ import { SkipAuth } from '../../guards/skip-auth.decorator';
 
 @Controller('products')
 export class ProductsController {
-  constructor(private productsService: ProductsService) {}
+  constructor (private readonly productsService: ProductsService) {}
 
   @Get()
   @SkipAuth()
-  getAllProducts(): ProductDto[] {
+  getAllProducts (): ProductDto[] {
     return this.productsService.getAll();
   }
 
   @Get(':id')
   @SkipAuth()
-  getById(@Param() { id }: ProductIdDto): ProductRespDto {
+  getById (@Param() { id }: ProductIdDto): ProductRespDto {
     return this.productsService.getById(id);
   }
 
   @Post()
   @SkipAuth()
-  create(@Res() res, @Body() productData: ProductUpdateDto) {
+  create (@Res() res, @Body() productData: ProductUpdateDto) {
     const newProduct = this.productsService.create(productData);
 
     return res
@@ -41,7 +41,7 @@ export class ProductsController {
 
   @Put(':id')
   @SkipAuth()
-  update(@Res() res, @Param() { id }: ProductIdDto, @Body() productData: ProductUpdateDto) {
+  update (@Res() res, @Param() { id }: ProductIdDto, @Body() productData: ProductUpdateDto) {
     const updatedProduct = this.productsService.update(productData, id);
 
     return res
@@ -51,7 +51,7 @@ export class ProductsController {
 
   @Delete(':id')
   @SkipAuth()
-  delete(@Res() res, @Param() { id }: ProductIdDto) {
+  delete (@Res() res, @Param() { id }: ProductIdDto) {
     this.productsService.delete(id);
 
     return res
