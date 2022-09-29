@@ -23,6 +23,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "set:husky": "husky install && git config gitflow.path.hooks .husky",
     "audit": "npm audit --json",
+    "audit:fix": "npm audit fix",
     "audit:snyk": "snyk monitor --json",
     "sonar": "sonar-scanner -Dsonar.login=${SONAR_TOKEN}",
     "release": "standard-version"
