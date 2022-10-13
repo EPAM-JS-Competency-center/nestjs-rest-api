@@ -52,6 +52,7 @@ chmod 400 "${PATH_TO_CERTIFICATE}"
 
 # using secure shell (SSH) enable node.js to use port 80 (see: https://stackoverflow.com/questions/60372618/nodejs-listen-eacces-permission-denied-0-0-0-080):
 ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" 'sudo setcap cap_net_bind_service=+ep $(which node)'
+ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" 'sudo setcap cap_net_bind_service=+ep $(which pm2)'
 # For Ubuntu server with NVM:
 #ssh -i "${PATH_TO_CERTIFICATE}" "${EC2_URI}" '. ~/.nvm/nvm.sh; sudo setcap cap_net_bind_service=+ep $(which node)'
 
