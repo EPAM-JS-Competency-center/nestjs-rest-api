@@ -1,10 +1,21 @@
+import { Currency } from '../constants';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsEnum, IsNumber, Min } from 'class-validator';
 
 export class CreateCartDto {
-  balance: string;
-  currency: string;
-}
-
-export class CreateCartDtoValid {
+  @ApiProperty()
+  @IsNumber()
+  @Min(0)
   balance: number;
-  currency: string;
+
+  @ApiProperty()
+  @IsEnum(Currency)
+  @ApiProperty({
+    enum: Currency,
+  })
+  currency: Currency;
+
+  @ApiProperty()
+  @IsNumber()
+  userId: number;
 }

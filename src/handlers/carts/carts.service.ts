@@ -1,43 +1,67 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
-import { UtilsService } from '../../services/utils/utils.service';
-import { ConfigModule } from '../../services/config/config.module';
-import { ConfigService } from '../../services/config/config.service';
+import { DataSource, Repository } from 'typeorm';
+import { Cart } from './carts.entity';
+import { UsersService } from '../users/users.service';
+import { SortOrder } from '../../shared/constants';
+import { ListingResponse } from '../../shared/utils/listing-response.util';
+import { CARTS_EXCEPTION_STRATEGIES_KEYS } from './carts-exception.strategies';
 
 @Injectable()
 export class CartsService {
+  private repository: Repository<Cart>;
+
   constructor(
-    private readonly utilsService: UtilsService,
-    private readonly configService: ConfigService,
-
-    @Inject('DateService')
-    private readonly DateService,
+    private dataSource: DataSource,
+    private usersService: UsersService,
   ) {
-    console.log(`Current env: ${configService.getAppConfig().env}`);
+    this.repository = this.dataSource.getRepository<Cart>(Cart);
   }
 
-  average() {
-    return this.utilsService.average([1,2,3]);
+  async create(createCartDto: CreateCartDto) {
+    const user = await this.usersService.findOne(createCartDto.userId);
+
+    const item = await this.repository.save({ ...createCartDto, user });
+
+    return {
+      id: item.id,
+    };
   }
 
-  create(createCartDto: CreateCartDto) {
-    return 'This action adds a new cart';
+  async findAll() {
+    const [items, count] = await this.repository.findAndCount({
+      order: {
+        createdAt: SortOrder.DESC,
+      },
+    });
+
+    return new ListingResponse<Cart>(items, count).toJSON();
   }
 
-  findAll() {
-    return `This action returns all carts`;
+  async findOne(id: number) {
+    const candidate = await this.repository.findOneBy({ id });
+
+    if (!candidate) {
+      throw new Error(CARTS_EXCEPTION_STRATEGIES_KEYS.CART_NOT_FOUND);
+    }
+
+    return candidate;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cart`;
+  async update(id: number, updateCartDto: UpdateCartDto) {
+    await this.findOne(id);
+
+    await this.repository.update({ id }, { ...updateCartDto });
+
+    return {
+      id,
+    };
   }
 
-  update(id: number, updateCartDto: UpdateCartDto) {
-    return `This action updates a #${id} cart`;
-  }
+  async remove(id: number) {
+    await this.findOne(id);
 
-  remove(id: number) {
-    return `This action removes a #${id} cart`;
+    return await this.repository.delete({ id });
   }
 }
