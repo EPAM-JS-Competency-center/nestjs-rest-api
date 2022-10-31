@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/express-app
+file_exists_behavior: RETAIN
+hooks:
+  BeforeInstall:
+    - location: scripts/install_root_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+  AfterInstall:
+    - location: scripts/install_project_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 300
+      runas: ec2-user

@@ -11,7 +11,7 @@ import { User, UserModel } from '../users/users.model';
 import { USER_SCHEMA_KEYS } from '../users/users.schema';
 import { getIsUserParsedPrimaryKeyValid } from '../users/utils/is-user-parsed-primary-key-valid.util';
 import { ListingResponse } from '../../shared/utils/listing-response.util';
-import { getIsConditionalCheckFailedException } from '../../modules/database/utils/database-exception-types.utils';
+import { getIsConditionalCheckFailedException } from '../../database/utils/database-exception-types.utils';
 import { CARTS_EXCEPTION_STRATEGIES_KEYS } from './carts-exception.strategies';
 import { BASE_EXCEPTION_STRATEGIES_KEYS } from '../../shared/http/base-exception.strategies';
 

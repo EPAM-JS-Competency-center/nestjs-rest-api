@@ -2610,21 +2610,30 @@ dotenv@^16.0.2:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.2.tgz#0b0f8652c016a3858ef795024508cddc4bffc5bf"
   integrity sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA==
 
-dynamoose-utils@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/dynamoose-utils/-/dynamoose-utils-3.0.2.tgz#da1224fcb4e451c7a8affdac1ab41d0c1613387e"
-  integrity sha512-O/NNmGeUVXomBDWBpGkbjft/jpl4vfthbWun8UvCuDDkEXEalgxu8XYP6dSYwMTwKEcTZNRaX5E/Dp9A1fWR+w==
+dynamoose-logger@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/dynamoose-logger/-/dynamoose-logger-3.1.0.tgz#4986c854f2855c009bb19944c02d621195ca8781"
+  integrity sha512-TNo6Eknj9Sgl5Ek9yTw0IycuXAHSqqHZ4ViJKlOz8uL96CJBURnWZ1Bt0R6QyuFWZbfz9TfLbNfv+EYBaUxp6A==
+  dependencies:
+    dynamoose-utils "^3.1.0"
+    js-object-utilities "^2.1.0"
+    uuid "^8.3.2"
+
+dynamoose-utils@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/dynamoose-utils/-/dynamoose-utils-3.1.0.tgz#041ba8ebe1de4f1671422f4f48a5e851fd675680"
+  integrity sha512-HeSR4H9HvhQM2zb+4LuQlfQMHYCSn9aSsAyDArUlqfLn3cDCfrYN/HBMVTv8pNkqOakAB7MlYOW7ubDThbsvKQ==
   dependencies:
     js-object-utilities "^2.1.0"
 
-dynamoose@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-3.0.2.tgz#5945aeea0dd6e7d093c56150799129d7d8921d09"
-  integrity sha512-cqciPyxCXpNNhJKPutgnN4nWVlnCmkJrqyYD5PFWcTfqhL83tKAGFGa9nIFIPvqoo/wjPWNYw+UUVvDi3Hs79w==
+dynamoose@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-3.1.0.tgz#31d02b8c0039296160363e76d9a7596cf0801bfe"
+  integrity sha512-YR1AeTp6/aOyM5dZIUAKpgmwn7YxlJNSz00zminFSzlpfxkq/6n9qa0Ws79XwdM0+Q4AVRvwhWtlMI+H2Zi59Q==
   dependencies:
     "@aws-sdk/client-dynamodb" "^3.142.0"
     "@aws-sdk/util-dynamodb" "^3.142.0"
-    dynamoose-utils "^3.0.2"
+    dynamoose-utils "^3.1.0"
     js-object-utilities "^2.1.0"
 
 ee-first@1.1.1:
@@ -4372,11 +4381,6 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
-
-nestjs-dynamoose@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/nestjs-dynamoose/-/nestjs-dynamoose-0.5.0.tgz#b81651eec4865d5b9035a7624f3b3fe127e34704"
-  integrity sha512-cVbvCjMQu72tJidZUFRoSgKlqorpFGjLxfljpTWTcXi5Q0RmraYIpBxfWgiYp5LfovnrJQZDeyLnKK4/IhsdiQ==
 
 node-emoji@1.11.0:
   version "1.11.0"

@@ -2,10 +2,10 @@ import { BaseModel } from '../../shared/base-model/base-model.model';
 import { getUserPrimaryKey } from './utils/user-primary-key.utils';
 import { Cart } from '../carts/carts.model';
 
-export interface UserKey {
+export type UserKey = {
   userId: string;
   relationKey: string;
-}
+};
 
 /** It's supposed to add all user relations here using & operator */
 type UserRelations = { createdAt?: string } & Cart;

@@ -3,15 +3,22 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './exception-filters/http-exception-filter';
 import { applyDocs } from './api-docs/apply-docs';
+import AppConfig from './app.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalPipes(new ValidationPipe());
+
   app.useGlobalFilters(new HttpExceptionFilter());
 
   applyDocs(app);
 
-  await app.listen(3000);
+  const port = new AppConfig().build().metaData.port;
+
+  await app.listen(port, () => {
+    console.info(`The app is up and running on ${port} port`);
+  });
 }
 
 bootstrap().then();

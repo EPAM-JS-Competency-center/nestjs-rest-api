@@ -7,15 +7,19 @@ const RAW_ENV_VARIABLES = Object.freeze({
   PUBLIC_ACCESS_KEY: process.env.PUBLIC_ACCESS_KEY,
   PRIVATE_ACCESS_KEY: process.env.PRIVATE_ACCESS_KEY,
   REGION: process.env.REGION,
-  LOCAL_DATABASE_ENDPOINT: process.env.LOCAL_DATABASE_ENDPOINT || false,
+  LOCAL_DATABASE_ENDPOINT: process.env.LOCAL_DATABASE_ENDPOINT,
   TABLE_AUTOCREATE: process.env.TABLE_AUTOCREATE,
   TABLE_AUTOUPDATE: process.env.TABLE_AUTOUPDATE,
   APP_NAME: process.env.APP_NAME,
   APP_VERSION: process.env.npm_package_version,
   DEVELOPMENT: process.env.DEVELOPMENT,
+  PORT: process.env.PORT,
 });
 
-type Options = Record<string, string | boolean | number>;
+type MetaData = {
+  port: number;
+  [x: string]: string | number | boolean;
+};
 
 export interface DatabaseOptions {
   accessKey: string;
@@ -28,13 +32,13 @@ export interface DatabaseOptions {
 
 export interface Config {
   databaseOptions: DatabaseOptions;
-  metaData: Options;
+  metaData: MetaData;
   serviceName: string;
   serviceVersion: string;
 }
 
 class AppConfig {
-  private static instance;
+  private static instance: AppConfig;
   private readonly config: Config;
 
   constructor() {
@@ -118,6 +122,11 @@ new AppConfig()
     tableAutoCreate: RAW_ENV_VARIABLES.TABLE_AUTOCREATE === 'true',
     tableAutoUpdate: RAW_ENV_VARIABLES.TABLE_AUTOUPDATE === 'true',
   })
-  .setMetaData({ isDevelopment: RAW_ENV_VARIABLES.DEVELOPMENT === 'true' });
+  .setMetaData({
+    isDevelopment: RAW_ENV_VARIABLES.DEVELOPMENT === 'true',
+    port: parseInt(RAW_ENV_VARIABLES.PORT) || 3000,
+  });
+
+console.info('App config', new AppConfig().build());
 
 export default AppConfig;
