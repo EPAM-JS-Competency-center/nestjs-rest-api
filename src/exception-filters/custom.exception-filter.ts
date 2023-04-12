@@ -9,14 +9,12 @@ export class CustomExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    response
-      .status(exception.status)
-      .json({
-        statusCode: exception.status,
-        timestamp: new Date().toISOString(),
-        path: request.url,
-        message: exception.message,
-        stack: exception.stack,
-      });
+    response.status(exception.status).json({
+      statusCode: exception.status,
+      timestamp: new Date().toISOString(),
+      path: request.url,
+      message: exception.message,
+      stack: exception.stack,
+    });
   }
 }
