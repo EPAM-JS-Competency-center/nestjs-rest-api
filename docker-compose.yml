@@ -1,0 +1,7 @@
+version: "1.0"
+services:
+    web:
+        build:
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
