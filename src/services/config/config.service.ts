@@ -6,7 +6,7 @@ export class ConfigService {
 
   getAppConfig() {
     return {
-      env: 'development'
-    }
+      env: 'development',
+    };
   }
 }
