@@ -19,9 +19,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "commitlint:last": "commitlint --from HEAD~1 --to HEAD --verbose",
+    "commitlint:last": "commitlint --edit",
     "check-deps": "yarn audit",
-    "sonarqube": "sonar-scanner"
+    "sonarqube": "sonar-scanner",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -51,6 +52,7 @@
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.3",
     "jest": "^27.5.1",
     "prettier": "^2.3.2",
     "release-please": "^15.10.5",
