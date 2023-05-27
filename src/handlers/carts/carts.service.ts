@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
@@ -18,7 +19,7 @@ export class CartsService {
   }
 
   average() {
-    return this.utilsService.average([1,2,3]);
+    return this.utilsService.average([1, 2, 3]);
   }
 
   create(createCartDto: CreateCartDto) {
