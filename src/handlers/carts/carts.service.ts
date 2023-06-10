@@ -6,18 +6,12 @@ import { ConfigService } from '../../services/config/config.service';
 
 @Injectable()
 export class CartsService {
-  constructor(
-    private readonly utilsService: UtilsService,
-    private readonly configService: ConfigService,
-
-    @Inject('DateService')
-    private readonly DateService,
-  ) {
+  constructor(private readonly utilsService: UtilsService, private readonly configService: ConfigService) {
     console.log(`Current env: ${configService.appConfig.env}`);
   }
 
   average() {
-    return this.utilsService.average([1,2,3]);
+    return this.utilsService.average([1, 2, 3]);
   }
 
   create(createCartDto: CreateCartDto) {
