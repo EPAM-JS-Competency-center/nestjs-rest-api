@@ -9,6 +9,6 @@ export class TransformPipe implements PipeTransform {
     return {
       balance: +value.balance || 0,
       currency: value.currency.toUpperCase(),
-    }
+    };
   }
 }

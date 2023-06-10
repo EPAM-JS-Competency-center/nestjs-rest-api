@@ -5,7 +5,8 @@ import { ConfigService } from '../../services/config/config.service';
 import {
   // SNS_SERVICE,
   SQS_SERVICE,
-  DYNAMO_DB_SERVICE } from '../../DI.tokens';
+  DYNAMO_DB_SERVICE,
+} from '../../DI.tokens';
 
 @Injectable()
 export class OrdersService {
@@ -20,7 +21,7 @@ export class OrdersService {
 
   create(orderDto): Promise<any> {
     const orderDate = Date.now();
-    const orderId = Buffer.from(`${ orderDate }`, 'utf-8').toString('base64');
+    const orderId = Buffer.from(`${orderDate}`, 'utf-8').toString('base64');
 
     return new Promise<any>((resolve, reject) => {
       this.awsSQS.sendMessage(
