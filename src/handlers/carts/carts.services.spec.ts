@@ -47,4 +47,10 @@ describe('CartsService', () => {
     expect(response).toBe(4);
     expect(utilsService.average).toBeCalledWith([1, 2, 3]);
   });
+
+  it('Should return message on create', () => {
+    const response = service.create({ balance: '1', currency: 'USD' });
+
+    expect(response).toBe('This action adds a new cart');
+  });
 });
