@@ -18,7 +18,7 @@ export class CartsController {
   @Get(':id')
   findOne(
     @Param('id', ParseIntPipe)
-    id: number
+    id: number,
   ) {
     return typeof id;
   }
@@ -30,9 +30,7 @@ export class CartsController {
   }
 
   @Put(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateCartDto: UpdateCartDto) {
+  update(@Param('id') id: string, @Body() updateCartDto: UpdateCartDto) {
     return this.cartsService.update(+id, updateCartDto);
   }
 

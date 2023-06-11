@@ -1,0 +1,58 @@
+stages:
+  - dependencies
+  - build
+  - test
+
+install_dependencies:
+  stage: dependencies
+  image: "node:18-alpine"
+  script:
+    - npm ci
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+
+build:
+  image: "node:18-alpine"
+  stage: build
+  script:
+    - npm run build
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+    policy: pull
+
+unit-tests:
+  stage: test
+  script:
+    - npm run test:cov
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+    policy: pull
+
+linting:
+  stage: test
+  script:
+    - npm run lint
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+    policy: pull
+
+audit:
+  stage: test
+  script:
+    - npm audit
