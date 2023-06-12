@@ -16,10 +16,10 @@ npm install --legacy-peer-deps
 # Use AWS Secrets service for setting env variables in prod;
 file_location=./.env
 cat >$file_location <<EOF
-ENDPOINT=""
+ENDPOINT="shop-db.csk6qexd9hgd.eu-west-1.rds.amazonaws.com"
 USER_NAME="postgres"
 DB_PORT="5432"
-PASSWORD=""
+PASSWORD="bALrMRp1te5EbR0CDwZu"
 TABLE_SCHEMA_AUTOUPDATE="false"
 DEVELOPMENT="false"
 PORT="3000"
