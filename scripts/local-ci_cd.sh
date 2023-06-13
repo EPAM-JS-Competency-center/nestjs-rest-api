@@ -1,4 +1,4 @@
-npm test && yarn check-deps && yarn lint;
+yarn test && yarn check-deps && yarn lint;
  if [ $? -eq 1 ]; then # if script succeeded
      echo "\n---== Code quality check failed ==---\n";
  else
