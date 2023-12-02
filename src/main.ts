@@ -11,7 +11,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new CustomExceptionFilter());
   app.enableCors({
-    origin: 'http://localhost:3000',
+    origin: '*',
   });
   await app.listen(process.env.APP_PORT);
   console.log(`App listen on port ${process.env.APP_PORT}`);
