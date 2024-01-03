@@ -18,7 +18,11 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "commitlint:last": "commitlint --edit",
+    "check-deps": "yarn audit",
+    "sonarqube": "sonar-scanner",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -31,6 +35,10 @@
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
@@ -38,36 +46,22 @@
     "@types/jest": "^27.0.1",
     "@types/node": "^16.0.0",
     "@types/supertest": "^2.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "babel-jest": "^29.5.0",
+    "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.2.5",
+    "husky": "^8.0.3",
+    "jest": "^27.5.1",
     "prettier": "^2.3.2",
+    "release-please": "^15.10.5",
     "source-map-support": "^0.5.20",
     "supertest": "^6.1.3",
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^3.10.1",
-    "typescript": "^4.3.5"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "typescript": "^4.9.5"
   }
 }
